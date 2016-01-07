@@ -1,24 +1,24 @@
 package com.example.kdi.learnfragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FirstFragment.OnFragmentInteractionListener} interface
+ * {@link KDIWebViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FirstFragment#newInstance} factory method to
+ * Use the {@link KDIWebViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FirstFragment extends Fragment {
+public class KDIWebViewFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +30,7 @@ public class FirstFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FirstFragment() {
+    public KDIWebViewFragment() {
         // Required empty public constructor
     }
 
@@ -40,11 +40,11 @@ public class FirstFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FirstFragment.
+     * @return A new instance of fragment KDIWebViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FirstFragment newInstance(String param1, String param2) {
-        FirstFragment fragment = new FirstFragment();
+    public static KDIWebViewFragment newInstance(String param1, String param2) {
+        KDIWebViewFragment fragment = new KDIWebViewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,36 +65,10 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_first, container, false);
-        rootView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                    // However, if we're being restored from a previous state,
-                    // then we don't need to do anything and should return or else
-                    // we could end up with overlapping fragments.
-
-                    // Create a new Fragment to be placed in the activity layout
-                    AnotherFragment anotherFragment = new AnotherFragment();
-
-                    // Add the fragment to the 'fragment_container' FrameLayout
-                    getFragmentManager().beginTransaction().addToBackStack(null)
-                            .replace(R.id.fragment_container, anotherFragment).commit();
-
-            }
-        });
-        rootView.findViewById(R.id.btnStartSliderActivity).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(getActivity(),SliderActivity.class));
-            }
-        });
-        rootView.findViewById(R.id.btnStartTabs).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(getActivity(),TabsActivity.class));
-            }
-        });
-        return rootView;
+        View root =  inflater.inflate(R.layout.fragment_kdiweb_view, container, false);
+        WebView wv = (WebView) root.findViewById(R.id.wv);
+        wv.loadUrl("http://www.jd.com");
+        return root;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
